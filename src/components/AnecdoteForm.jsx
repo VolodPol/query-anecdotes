@@ -13,7 +13,8 @@ const AnecdoteForm = () => {
     onSuccess: async (created) => {
       const anecdotes = await queryClient.getQueryData(['anecdotes'])
       queryClient.setQueryData(['anecdotes'], anecdotes.concat(created))
-    }
+    },
+    onError: error => updateNotification(error.message, dispatchNotification)
   })
 
   const onCreate = (event) => {
